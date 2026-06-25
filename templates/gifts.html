@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Ідеї подарунків</title>
+</head>
+<body>
+    <h1>Мій список подарунків</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p><strong>{{ message }}</strong></p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <h2>Додати подарунок</h2>
+    <form method="POST">
+        <input type="text" name="gift_name">
+        <button type="submit">Додати</button>
+    </form>
+
+    <h2>Пошук подарунка</h2>
+    <form method="GET">
+        <input type="text" name="search_query">
+        <button type="submit">Знайти</button>
+    </form>
+
+    {% if search_result %}
+        <h3>Результат пошуку:</h3>
+        <p>{{ search_result }}</p>
+    {% endif %}
+
+    <h2>Список усіх подарунків</h2>
+    <ul>
+        {% for gift in gifts %}
+            <li>{{ gift }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
