@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template_string, request, url_for
+from flask import Flask, flash, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -26,13 +26,11 @@ def index():
         else:
             search_result = "Такого подарунка ще немає у списку"
 
-    with open("templates/gifts.html", "r", encoding="utf-8") as f:
-        html = f.read()
-
-    return render_template_string(html, gifts=gifts, search_result=search_result)
+    return render_template("gifts.html", gifts=gifts, search_result=search_result)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
 
